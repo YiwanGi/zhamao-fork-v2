@@ -27,8 +27,8 @@ fi
 
 if [ -f "$(pwd)/src/entry.php" ]; then
     $executable "$(pwd)/src/entry.php" $@
-elif [ -f "$(pwd)/vendor/zhamao/framework/src/entry.php" ]; then
-    $executable "$(pwd)/vendor/zhamao/framework/src/entry.php" $@
+elif [ -f "$(pwd)/vendor/yiwangi/zhamao-fork-v2/src/entry.php" ]; then
+    $executable "$(pwd)/vendor/yiwangi/zhamao-fork-v2/src/entry.php" $@
 else
     echo "[ErrCode:E00015] Cannot find zhamao-framework entry file!"
     exit 1
