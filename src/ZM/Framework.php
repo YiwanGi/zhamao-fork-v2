@@ -172,9 +172,9 @@ class Framework
                 } else {
                     $out['worker'] = $this->swoole_server_config['worker_num'];
                 }
-                $out['environment'] = ($args['env'] ?? null) === null ? 'default' : $args['env'];
-                $out['log_level'] = Console::getLevel();
+                #$out['environment'] = ($args['env'] ?? null) === null ? 'default' : $args['env'];
                 $out['version'] = ZM_VERSION . (LOAD_MODE === 0 ? (' (build ' . ZM_VERSION_ID . ')') : '');
+                $out['log_level'] = Console::getLevel();
                 $out['master_pid'] = posix_getpid();
                 if (APP_VERSION !== 'unknown') {
                     $out['app_version'] = APP_VERSION;
