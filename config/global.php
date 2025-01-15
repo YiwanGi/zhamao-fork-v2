@@ -53,8 +53,9 @@ $config['runtime'] = [
         ],
         'namespace' => [],
     ],
-    'inside_table_size' => 65536 // 内部表字符串最大长度（需要2的倍数）
+    'inside_table_size' => 65536, // 内部表字符串最大长度（需要2的倍数）
     // 正常不要低于65536，如果群数量过多可能出现会size不够。若swoole日志出现WARNING	TableRow::set_value(): [key=wait_api,field=value]string value is too long可以将该值往大设置。
+    'console_clean' => false, // 运行时是否显示基础信息
 ];
 
 /* 轻量字符串缓存，默认开启 */
