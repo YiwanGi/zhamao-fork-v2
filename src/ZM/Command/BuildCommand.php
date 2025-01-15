@@ -94,7 +94,7 @@ class BuildCommand extends Command
         $phar->buildFromIterator(new ArrayIterator($map));
         $phar->setStub(
             "#!/usr/bin/env php\n" .
-            $phar->createDefaultStub(LOAD_MODE == 0 ? 'src/entry.php' : 'vendor/zhamao/framework/src/entry.php')
+            $phar->createDefaultStub(LOAD_MODE == 0 ? 'src/entry.php' : 'vendor/yiwangi/zhamao-fork-v2/src/entry.php')
         );
         $phar->stopBuffering();
         $this->output->writeln('');
