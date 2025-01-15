@@ -76,7 +76,7 @@ class ConsoleApplication extends Application
             echo "* Running in phar mode.\n";
             define('SOURCE_ROOT_DIR', Phar::running());
             define('LOAD_MODE', is_dir(SOURCE_ROOT_DIR . '/src/ZM') ? 0 : 1);
-            define('FRAMEWORK_ROOT_DIR', LOAD_MODE == 1 ? (SOURCE_ROOT_DIR . '/vendor/zhamao/framework') : SOURCE_ROOT_DIR);
+            define('FRAMEWORK_ROOT_DIR', LOAD_MODE == 1 ? (SOURCE_ROOT_DIR . '/vendor/yiwangi/zhamao-fork-v2') : SOURCE_ROOT_DIR);
         } else {
             define('SOURCE_ROOT_DIR', WORKING_DIR);
             define('LOAD_MODE', is_dir(SOURCE_ROOT_DIR . '/src/ZM') ? 0 : 1);
