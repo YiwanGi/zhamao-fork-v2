@@ -32,7 +32,7 @@ class OnRequest implements SwooleEvent
     public function onCall(?Request $request, ?\Swoole\Http\Response $response)
     {
         $response = new Response($response);
-        foreach (ZMConfig::get('global')['http_header'] as $k => $v) {
+        foreach (ZMConfig::get('global')['http_header'] ?? [] as $k => $v) {
             $response->setHeader($k, $v);
         }
         unset(Context::$context[Coroutine::getCid()]);
