@@ -85,7 +85,7 @@ class HttpUtil
                     if (is_file($path . '/' . $vp)) {
                         Console::info('[200] ' . $uri);
                         $exp = strtolower(pathinfo($path . $vp)['extension'] ?? 'unknown');
-                        $response->setHeader('Content-Type', ZMConfig::get('file_header')[$exp] ?? 'application/octet-stream');
+                        $response->setHeader('Content-Type', self::responseContentType($exp));
                         $response->end(file_get_contents($path . $vp));
                         return true;
                     }
@@ -93,7 +93,7 @@ class HttpUtil
             } elseif (is_file($path)) {
                 Console::info('[200] ' . $uri);
                 $exp = strtolower(pathinfo($path)['extension'] ?? 'unknown');
-                $response->setHeader('Content-Type', ZMConfig::get('file_header')[$exp] ?? 'application/octet-stream');
+                $response->setHeader('Content-Type', self::responseContentType($exp));
                 $response->end(file_get_contents($path));
                 return true;
             }
@@ -107,5 +107,20 @@ class HttpUtil
     {
         $response->status($code);
         $response->end(self::getHttpCodePage($code));
+    }
+
+    
+    public static function responseContentType(string $ext)
+    {
+        $headers = ZMConfig::get('file_header');
+        if (isset($headers[$ext])) {
+            return $headers[$ext];
+        }
+        $file_path = DataProvider::getFrameworkRootDir() . '/config/file_header.json';
+        $file_headers = json_decode(file_get_contents($file_path), true);
+        if (isset($file_headers[$ext])) {
+            return $file_headers[$ext];
+        }
+        return 'application/octet-stream';
     }
 }
