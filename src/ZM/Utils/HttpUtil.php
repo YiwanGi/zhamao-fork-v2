@@ -27,7 +27,7 @@ class HttpUtil
             $matcher = new UrlMatcher(RouteManager::$routes ?? new RouteCollection(), $context);
             $matched = $matcher->match($uri);
         } catch (ResourceNotFoundException $e) {
-            if (ZMConfig::get('global', 'static_file_server')['status']) {
+            if (ZMConfig::get('global', 'static_file_server')['status'] ?? false) {
                 HttpUtil::handleStaticPage($request->server['request_uri'], $response);
                 return null;
             }
