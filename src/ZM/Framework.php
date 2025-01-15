@@ -160,7 +160,8 @@ class Framework
             ZMAtomic::init();
 
             // 非静默模式下打印启动信息
-            if (!self::$argv['private-mode']) {
+            $clean_conf = ZMConfig::get('global', 'runtime')['console_clean'] ?? true;
+            if (!self::$argv['private-mode'] && $clean_conf === false) {
                 $out['working_dir'] = DataProvider::getWorkingDir();
                 $out['listen'] = ZMConfig::get('global', 'host') . ':' . ZMConfig::get('global', 'port');
                 if (!isset($this->swoole_server_config['worker_num'])) {
