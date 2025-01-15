@@ -23,7 +23,7 @@ class StaticFileHandler
             }
             if (is_file($full_path)) {
                 $exp = strtolower(pathinfo($full_path)['extension'] ?? 'unknown');
-                $response->setHeader('Content-Type', ZMConfig::get('file_header')[$exp] ?? 'application/octet-stream');
+                $response->setHeader('Content-Type', HttpUtil::responseContentType($exp));
                 $response->end(file_get_contents($full_path));
                 return;
             }
