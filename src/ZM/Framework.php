@@ -194,7 +194,7 @@ class Framework
                     $conf = ZMConfig::get('global', 'redis_config');
                     $out['redis_pool'] = $conf['host'] . ':' . $conf['port'];
                 }
-                if (ZMConfig::get('global', 'static_file_server')['status'] !== false) {
+                if ((ZMConfig::get('global', 'static_file_server')['status'] ?? false) !== false) {
                     $out['static_file_server'] = 'enabled';
                 }
                 if (self::$argv['show-php-ver'] !== false) {
